@@ -26,6 +26,7 @@ Not supported, are workbooks with encrypted extracts or workbooks that include u
 
 To use this tool, you need the following:
 
+* Python 2.7.9 or later or Python 3.5 or later
 * Tableau Server version 2020.2 or later
 * [Tableau Server Client (Python)](https://tableau.github.io/server-client-python/)
 * Server or site administrator permissions
