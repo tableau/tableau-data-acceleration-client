@@ -1,7 +1,8 @@
 ---
-title: Release Notes for the Tableau Analytics Extensions API
+
+title: Release Notes for the Tableau Data Acceleration Client
 layout: docs
---- 
+---
 
 **In this section**
 
@@ -11,6 +12,7 @@ layout: docs
 ----
 
 ### Initial Release
-*March 11, 2020*
+
+*May 5, 2020*
 
 Initial release.
