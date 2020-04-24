@@ -20,22 +20,4 @@ Not supported, are workbooks with encrypted extracts or workbooks that include u
 * Workbooks using encrypted extracts or that include user-based, now(), today() functions are not supported currently and will not be accelerated.
 * Federated Data Source is not supported for acceleration. When there is a workbook containing both federated data sources and other data sources, the data queried against federated data sources will not be accelerated.
 * Data Blending is partially supported for acceleration. Data queried against the secondary data sources are not accelerated.
-* Data acceleration schedules are not currently supported to be created in the Tableau Server schedules view.  
-
-## Prerequisites
-
-To use this tool, you need the following:
-
-* Python 3.5 or later
-* Tableau Server version 2020.2 or later
-* [Tableau Server Client (Python)](https://tableau.github.io/server-client-python/)
-* Server or site administrator permissions
-
-When using this feature, it is recommended to increase the size of the Tableau Server external cache to 2 GB or larger.
-
-View your current Tableau Server external cache size setting:
-`tsm configuration get -k redis.max_memory_in_mb`
-
-Set the Tableau Server external cache size to 2 GB:
-`tsm configuration set -k redis.max_memory_in_mb -v 2048`
-`tsm pending-changes apply`
+* Data acceleration schedules are not currently supported to be created in the Tableau Server schedules view.
