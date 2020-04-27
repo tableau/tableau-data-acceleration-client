@@ -80,7 +80,11 @@ INTERVAL_TYPE can be one of the four options below:
 {Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday}
 --monthly-interval, INTERVAL is the starting day in a month.
 
-[START_TIME] is optional. If no starting time is specified, the default time 00:00:00 is used. To specify the starting time, --start-hour and --start-minute can be used to specify the time.
+[START_TIME] is optional. If no starting time is specified, the default time 00:00:00 is used. To specify the starting time, --start-hour and --start-minute can be used to specify the time. For example, let's look at the following command:
+
+`python accelerate_workbooks.py --create-schedule --hourly-interval 0.25 --start-hour 18 --start-minute 30`
+
+In this example, the schedule is for every 15 minutes, starting at 18:30 (6:30 PM) every day. The next schedule is 18:45, 19:30, 19:45, and so on until the day restarts at midnight or until the specified --end-hour and --end-minute are reached. It will not run at 19:00, 19:15, 20:00, and so on because --start-minute is set to 30 which means that it's only scheduled to start on minute 30 of each hour. It will not run on 1:30, 6:30, 17:30, and so on because -–start-hour is set to 18 which means it's only scheduled to start on hour 18 of each day.
 
 [END_TIME] is optional. If no end time is specified, the end of the day will be used. To specify the ending time, --end-hour and --end-minute can be used to specify the time. END_TIME option is only useful for hourly interval.
 
@@ -241,6 +245,12 @@ Workbooks removed from schedule
 Project/Workbook    Schedules
 Default/workbook1    My Schedule
 ```
+
+### Delete a Schedule
+
+Use the --delete-schedule command to delete a schedule. This deletes the schedule whether it is referenced by a workbook or not. If a workbook is associated with the schedule, the workbook remains enabled but the schedule is deleted.
+
+`python accelerate_workbooks.py --delete-schedule SCHEDULE_NAME`
 
 ### Accelerate On-Demand
 
