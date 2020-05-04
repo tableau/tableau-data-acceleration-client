@@ -68,17 +68,19 @@ Note: If a workbook uses only embedded extracts then an acceleration
 
 ### Monitor Your Accelerated Workbooks
 
-To see which workbooks have been enabled, use the `--status`, and `--show-schedules` commands.
-
-Display all the workbooks that are enabled, and which acceleration schedules are associated.
+Display all the workbooks that are enabled, and the scheduled tasks for data acceleration.
 `python accelerate_workbooks.py --status`
 
 Display the accelerated schedules associated with workbooks.
 `python accelerate_workbooks.py --show-schedules`
 
+Display the scheduled tasks for data acceleration.
+`python accelerate_workbooks.py --show-tasks`
+
 ### Load Your Accelerated Workbooks and Check the Performance
 
-#### Tableau Server Administrator Views  
+Display a summary of the acceleration benefit for enabled workbooks.
+`python accelerate_workbooks.py --compare`
 
 Tableau Server provides an administrator view to review the load times for workbooks. See [Stats for Load Times](https://help.tableau.com/current/server/en-us/adminview_stats_load_time.htm).
 

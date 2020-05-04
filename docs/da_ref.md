@@ -80,13 +80,13 @@ INTERVAL_TYPE can be one of the four options below:
 {Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday}
 --monthly-interval, INTERVAL is the starting day in a month.
 
-[START_TIME] is optional. If no starting time is specified, the default time 00:00:00 is used. To specify the starting time, --start-hour and --start-minute can be used to specify the time. For example, let's look at the following command:
+[START_TIME] is optional. If no starting time is specified, the default time 00:00:00 is used. To specify the starting time, `--start-hour` and `--start-minute` can be used to specify the time. For example, let's look at the following command:
 
 `python accelerate_workbooks.py --create-schedule --hourly-interval 0.25 --start-hour 18 --start-minute 30`
 
-In this example, the schedule is for every 15 minutes, starting at 18:30 (6:30 PM) every day. The next schedule is 18:45, 19:30, 19:45, and so on until the day restarts at midnight or until the specified --end-hour and --end-minute are reached. It will not run at 19:00, 19:15, 20:00, and so on because --start-minute is set to 30 which means that it's only scheduled to start on minute 30 of each hour. It will not run on 1:30, 6:30, 17:30, and so on because -–start-hour is set to 18 which means it's only scheduled to start on hour 18 of each day.
+In this example, the schedule is for every 15 minutes, starting at 18:30 (6:30 PM) every day. The next schedule is 18:45, 19:30, 19:45, and so on until the day restarts at midnight or until the specified `--end-hour` and `--end-minute` are reached. It will not run at 19:00, 19:15, 20:00, and so on because `--start-minute` is set to 30 which means that it's only scheduled to start on minute 30 of each hour. It will not run on 1:30, 6:30, 17:30, and so on because `--start-hour` is set to 18 which means it's only scheduled to start on hour 18 of each day.
 
-[END_TIME] is optional. If no end time is specified, the end of the day will be used. To specify the ending time, --end-hour and --end-minute can be used to specify the time. END_TIME option is only useful for hourly interval.
+[END_TIME] is optional. If no end time is specified, the end of the day will be used. To specify the ending time, `--end-hour` and `--end-minute` can be used to specify the time. END_TIME option is only useful for hourly interval.
 
 The warning, "Warning: The recurrence interval of the given schedule is larger than Vizql server data refresh interval of 720 minutes." will be displayed if the users try to create a schedule that exceeds the configured VizQL server data refresh interval. By default, this is set to 12 hours (720 minutes).
 
@@ -100,7 +100,7 @@ After the acceleration schedule is created using the command line client, it can
 
 ### Associate Workbooks to a Schedule
 
-You can associate a workbook to single or multiple data acceleration schedules. If your workbook has not been enabled for acceleration, the --add-schedule command will automatically enable the workbook.  
+You can associate a workbook to single or multiple data acceleration schedules. If your workbook has not been enabled for acceleration, the `--add-schedule` command will automatically enable the workbook.  
 
 `python accelerate_workbooks.py --add-to-schedule [SCHEDULE_NAME] --workbook-path WORKBOOK_PATH`
 
@@ -202,11 +202,11 @@ Workbooks where credentials are not embedded:
 
 ### Detach a Workbook from a Schedule
 
-Use the --remove-from-schedule command to detach a workbook from a schedule.
+Use the `--remove-from-schedule` command to detach a workbook from a schedule.
 
 `python accelerate_workbooks.py --remove-from-schedule SCHEDULE_NAME [--workbook-path] WORKBOOK_PATH`
 
-`python accelerate_workbooks.py --remove-from-schedule SCHEDULE_NAME [---path-list] PATH_LIST`
+`python accelerate_workbooks.py --remove-from-schedule SCHEDULE_NAME [--path-list] PATH_LIST`
 
 `python accelerate_workbooks.py --remove-from-schedule SCHEDULE_NAME project/workbook`
 
@@ -248,13 +248,13 @@ Default/workbook1    My Schedule
 
 ### Delete a Schedule
 
-Use the --delete-schedule command to delete a schedule. This deletes the schedule whether it is referenced by a workbook or not. If a workbook is associated with the schedule, the workbook remains enabled but the schedule is deleted.
+Use the `--delete-schedule` command to delete a schedule. This deletes the schedule whether it is referenced by a workbook or not. If a workbook is associated with the schedule, the workbook remains enabled but the schedule is deleted.
 
 `python accelerate_workbooks.py --delete-schedule SCHEDULE_NAME`
 
 ### Accelerate On-Demand
 
-You can use --enable combined with --acceleration-now to submit a backgrounder pre-computation job on demand.  This can be useful to trigger a pre-computation ahead of the next scheduled run.
+You can use `--enable` combined with `--accelerate-now` to submit a backgrounder pre-computation job on demand.  This can be useful to trigger a pre-computation ahead of the next scheduled run.
 
 `python accelerate_workbooks.py --enable --accelerate-now --path-list PATH_LIST`
 
@@ -302,38 +302,9 @@ Example 2:  Enable the Default site for acceleration
 
 `python accelerate_workbooks.py --enable --site SITE_NAME --type site`
 
-### Show Acceleration Schedules
-
-The --show-schedules command displays the schedule information for enabled workbooks associated with their accelerated schedules. The schedule information includes the schedule name associated with the workbooks and their next run time.
-
-`python accelerate_workbooks.py --show-schedules`
-
-`python accelerate_workbooks.py --show-schedules SCHEDULE_NAME [--workbook-path] [WORKBOOK_PATH]`
-
-`python accelerate_workbooks.py --show-schedules SCHEDULE_NAME [---path-list] [PATH_LIST]`
-
-Note: If --workbook-path or –path-list are omitted, the command will show all the enabled workbooks with their schedule information.
-
-Example 1:  When there are no data acceleration schedules associated with enabled workbooks
-
-`python accelerate_workbooks.py --show-schedules`
-
-Scheduled Tasks for Data Acceleration: None
-
-Example 2:  When there are enabled workbooks with data acceleration schedules
-
-```iecst
-Scheduled Tasks for Data Acceleration
-
-Project/Workbook                 Schedule       Next Run
-Default/extractworkbook          *    
-Default/liveworkbook             My Schedule    2020-01-22 16:00:00-08:00
-Default/liveandextractworkbook   My Schedule    2020-01-22 16:00:00-08:00
-```
-
 ### Show Acceleration Status
 
-The --status command shows the list of workbooks enabled for acceleration and their associated schedules.  When a workbook is enabled but not associated with any schedule, an asterisk '*' will be shown in the Schedule column. In that case, the pre-computed data for workbooks will be updated when the workbooks are re-published, or their extracts (if they have any) get refreshed.  Workbooks that only contain embedded extracts will not be associated with schedules.
+The `--status` command shows the list of workbooks enabled for acceleration and the scheduled tasks for data acceleration.  When a workbook is enabled but not associated with any schedule, an asterisk '*' will be shown in the Schedule column. In that case, the pre-computed data for workbooks will be updated when the workbooks are re-published, or their extracts (if they have any) get refreshed.  Workbooks that only contain embedded extracts will not be associated with schedules.
 
 `python accelerate_workbooks.py --status`
 
@@ -357,27 +328,55 @@ Default/liveandextractworkbook   My Schedule   2020-01-22 16:00:00-08:00
 *The Data Acceleration views for these workbooks will be updated when they are published, or when their extract is refreshed.
 ```
 
+### Show Acceleration Schedules
+
+The `--show-schedules` command displays the schedule information for enabled workbooks associated with their accelerated schedules. The schedule information includes the schedule name associated with the workbooks and their next run time.
+
+`python accelerate_workbooks.py --show-schedules`
+
+`python accelerate_workbooks.py --show-schedules SCHEDULE_NAME [--workbook-path] [WORKBOOK_PATH]`
+
+`python accelerate_workbooks.py --show-schedules SCHEDULE_NAME [--path-list] [PATH_LIST]`
+
+Note: If `--workbook-path` or `-–path-list` are omitted, the command will show all the enabled workbooks with their schedule information.
+
+Example 1:  When there are no data acceleration schedules associated with enabled workbooks
+
+`python accelerate_workbooks.py --show-schedules`
+
+Scheduled Tasks for Data Acceleration: None
+
+Example 2:  When there are enabled workbooks with data acceleration schedules
+
+```iecst
+Scheduled Tasks for Data Acceleration
+Project/Workbook                 Schedule       Next Run
+Default/extractworkbook          *    
+Default/liveworkbook             My Schedule    2020-01-22 16:00:00-08:00
+Default/liveandextractworkbook   My Schedule    2020-01-22 16:00:00-08:00
+```
+
 ### Show Acceleration Tasks
 
-The --show-tasks command displays the scheduled tasks for data acceleration. The information includes the project and workbook name, the schedule name associated with the workbooks, and their next run time.
+The `--show-tasks` command displays the scheduled tasks for data acceleration. The information includes the project and workbook name, the schedule name associated with the workbooks, and their next run time.
 
 `python accelerate_workbooks.py --show-tasks`
 
 ```iecst
 Scheduled Tasks for Data Acceleration
-Project/Workbook                 Schedule      Next Run At
+Project/Workbook               Schedule      Next Run At
 Default/myworkbook             My Schedule   2020-01-22 16:00:00-08:00
 ```
 
 ### Show Acceleration Benefit Summary
 
-The --compare command displays a summary of the acceleration benefit for enabled workbooks.
+The `--compare` command displays a summary of the acceleration benefit for enabled workbooks.
 
 `python accelerate_workbooks.py --compare`
 
 ### Specify workbook paths
 
-This section describes how to specify the workbook path argument and the path list argument in the commands --add-to-schedule, --enable, --remove-from-schedule.
+This section describes how to specify the workbook path argument and the path list argument in the commands `--add-to-schedule`, `--enable`, `--remove-from-schedule`.
 
 --workbook-path
 [WORKBOOK_PATH] is the path concatenating the project path and the workbook name by "/" where the project path is the path of the project directly containing the workbook to the root project.  The path is in the form of "Project Name/Workbook Name". If a workbook is in a nested project, its path may be like "Project 1/Project 2/Workbook Name". Workbook paths are case sensitive.
