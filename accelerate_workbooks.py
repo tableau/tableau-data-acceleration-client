@@ -1082,11 +1082,13 @@ def delete_materialized_view_schedule(server, args):
 def show_materialized_view_schedules(server):
     schedules = TSC.Pager(server.schedules)
 
+    local_tz = tz.tzlocal()
     rows = list()
     for schedule in schedules:
         if schedule.schedule_type != TSC.ScheduleItem.Type.DataAcceleration:
             continue
-        rows.append([schedule.name, schedule.next_run_at])
+        rows.append([schedule.name,
+                     schedule.next_run_at.astimezone(local_tz) if schedule.next_run_at is not None else None])
     print_table(rows, ["Name", "Next Run At"],
                 "Data Acceleration Schedule")
 
