@@ -302,7 +302,7 @@ Example 2:  Enable the Default site for acceleration
 
 `python accelerate_workbooks.py --enable --site SITE_NAME --type site`
 
-### Display Acceleration Schedules
+### Show Acceleration Schedules
 
 The --show-schedules command displays the schedule information for enabled workbooks associated with their accelerated schedules. The schedule information includes the schedule name associated with the workbooks and their next run time.
 
@@ -356,6 +356,24 @@ Default/liveandextractworkbook   My Schedule   2020-01-22 16:00:00-08:00
 
 *The Data Acceleration views for these workbooks will be updated when they are published, or when their extract is refreshed.
 ```
+
+### Show Acceleration Tasks
+
+The --show-tasks command displays the scheduled tasks for data acceleration. The information includes the project and workbook name, the schedule name associated with the workbooks, and their next run time.
+
+`python accelerate_workbooks.py --show-tasks`
+
+```iecst
+Scheduled Tasks for Data Acceleration
+Project/Workbook                 Schedule      Next Run At
+Default/myworkbook             My Schedule   2020-01-22 16:00:00-08:00
+```
+
+### Show Acceleration Benefit Summary
+
+The --compare command displays a summary of the acceleration benefit for enabled workbooks.
+
+`python accelerate_workbooks.py --compare`
 
 ### Specify workbook paths
 
