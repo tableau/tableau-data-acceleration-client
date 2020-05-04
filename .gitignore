@@ -1,9 +1,0 @@
-# Dependency directories
-Examples/
-node_modules/
-_site/
-node_modules/
-npm-debug.log
-
-# Ignore webpack generated files
-dist/
