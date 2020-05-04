@@ -34,6 +34,8 @@ Set the Tableau Server external cache size to 2 GB:
 
 ## Running the Setup Script
 
+Download the scripts from [https://github.com/tableau/tableau-data-acceleration-client/archive/master.zip](https://github.com/tableau/tableau-data-acceleration-client/archive/master.zip).
+
 The `setup.py` script verifies and installs the dependencies of the `accelerate_workbooks.py` script. The script requires internet connectivity to download the libraries if they are not already installed.
 
 To run the script on Windows type, `setup.py`. To run the script on Linux, type `sudo setup.py`.
