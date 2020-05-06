@@ -73,20 +73,21 @@ The following command is used to create a data acceleration schedule.
 
 In Tableau Server, creating schedules requires the Server Administrator role. For other commands the Server Administrator role or the Site Administrator role is sufficient.
 
-INTERVAL_TYPE can be one of the four options below:
---hourly-interval with INTERVAL in {0.25,0.5,1,2,4,6,8,12}, the unit is hour.
---daily-interval, INTERVAL is not needed
---weekly-interval with INTERVAL as a non-empty subset of:
+INTERVAL_TYPE can be one of the options below:
+
+* --hourly-interval with INTERVAL in {0.25,0.5,1,2,4,6,8,12}, the unit is hour. Hourly schedules that run more frequently than every 60 minutes must have start and end times that are on the hour.
+* --daily-interval, INTERVAL is not needed
+* --weekly-interval with INTERVAL as a non-empty subset of:
 {Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday}
---monthly-interval, INTERVAL is the starting day in a month.
+* --monthly-interval, INTERVAL is the starting day in a month.
 
 [START_TIME] is optional. If no starting time is specified, the default time 00:00:00 is used. To specify the starting time, `--start-hour` and `--start-minute` can be used to specify the time. For example, let's look at the following command:
 
-`python accelerate_workbooks.py --create-schedule "A Schedule"  --hourly-interval 0.25 --start-hour 18 --start-minute 30`
+`python accelerate_workbooks.py --create-schedule "A Schedule"  --hourly-interval 0.25 --start-hour 18 --start-minute 00`
 
-In this example, the schedule is for every 15 minutes, starting at 18:30 (6:30 PM) every day. The next schedule is 18:45, 19:30, 19:45, and so on until the day restarts at midnight or until the specified `--end-hour` and `--end-minute` are reached. It will not run at 19:00, 19:15, 20:00, and so on because `--start-minute` is set to 30 which means that it's only scheduled to start on minute 30 of each hour. It will not run on 1:30, 6:30, 17:30, and so on because `--start-hour` is set to 18 which means it's only scheduled to start on hour 18 of each day.
+In this example, the schedule is for every 15 minutes, starting at 18:00 (6:00 PM) every day. The next schedule is 18:15, 18:30, 18:45, and so on until the day restarts at midnight or until the specified `--end-hour` and `--end-minute` is reached. It will not run at 1:30, 6:30, 17:30, and so on because `--start-hour` is set to 18 which means it's only scheduled to start on hour 18 of each day.
 
-[END_TIME] is optional. If no end time is specified, the end of the day will be used. To specify the ending time, `--end-hour` and `--end-minute` can be used to specify the time. END_TIME option is only useful for hourly interval.
+[END_TIME] is optional. If no end time is specified, the end of the day will be used. To specify the ending time, `--end-hour` and `--end-minute` can be used to specify the time. The END_TIME option is only useful for hourly interval.
 
 The warning, "Warning: The recurrence interval of the given schedule is larger than Vizql server data refresh interval of 720 minutes." will be displayed if the users try to create a schedule that exceeds the configured VizQL server data refresh interval. By default, this is set to 12 hours (720 minutes).
 
