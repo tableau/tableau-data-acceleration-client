@@ -7,7 +7,7 @@ import shutil
 tsc_download_file = 'tsc_development.zip'
 
 # Tabelau Server Client version supporting accelerate_workbooks.py
-tsc_version = '5812dc9043348f7b80ad0c4dd363652a2351756d'
+tsc_version = 'f1781b687d2a709301337e2d2cf776bfc445cf86'
 
 server_client_download_url = 'https://github.com/tableau/server-client-python/archive/{}.zip'.format(tsc_version)
 tsc_lib_directory = 'server-client-python-{}'.format(tsc_version)
