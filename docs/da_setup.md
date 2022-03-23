@@ -15,7 +15,7 @@ layout: docs
 To use the Tableau Data Acceleration client, you need the following:
 
 * Python 3.5 or later (Check your version by typing `python --version`)
-* Tableau Server version 2020.2 to 2021.4
+* Tableau Server version 2020.2 to 2021.4 ***(Data Acceleration deprecated in 2022.1)***
 * [Tableau Server Client (Python)](https://tableau.github.io/server-client-python/)
 * Server or site administrator permissions
 
