@@ -2,6 +2,10 @@
 
 [![Tableau Supported](https://img.shields.io/badge/Support%20Level-Tableau%20Supported-53bd92.svg)](https://www.tableau.com/support-levels-it-and-developer-tools)
 
+## Archieved
+
+Tableau Data Acceleration Client is archieved. Data Acceleration deprecated in 2022.1, please use [View Acceleration](https://help.tableau.com/current/server/en-us/data_acceleration.htm)
+
 ## Why the Tableau Data Acceleration Client?
 
 Tableau Server administrators can enable data acceleration for specific workbooks. An accelerated workbook loads faster because Tableau Server pre-computes the workbook's data in a background process. The client is the easiest way to configure data acceleration.
