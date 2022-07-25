@@ -11,7 +11,7 @@ Tableau Server administrators can enable data acceleration for specific workbook
 To use this tool, you need the following:
 
 * Python 3.5 or later
-* Tableau Server version 2020.2 to 2021.4 ***(Data Acceleration deprecated in 2022.1)***
+* Tableau Server version 2020.2 to 2021.4 ***(Data Acceleration deprecated in 2022.1, please use [View Acceleration](https://help.tableau.com/current/server/en-us/data_acceleration.htm))***
 * [Tableau Server Client (Python)](https://tableau.github.io/server-client-python/)
 * Server or site administrator permissions
 
